@@ -3,8 +3,8 @@ from LibraryClasses.Book import Book
 from LibraryClasses.Person import Person
 from LibraryClasses.Book_log import Book_log
 
+"""
 my_log = []
-
 person1 = Person("John", "PsyStreet")
 person2 = Person("Mary", "NotPsyStreet")
 book1 = Book(1, "Title1", "Author1")
@@ -14,11 +14,38 @@ booklog = Book_log(person1, book1)
 booklog.check_out_book(person2, book2)
 booklog.print_log()
 
+my_log.append(booklog)
+
+person1 = Person("John", "PsyStreet")
+book1 = Book(1, "Title1", "Author1")
+book_log = Book_log(Person, Book)
+book_log.print_log()
+"""
+
+a_value = "Nothing"
+list = ["Joe", "Bob"]
 app = Flask(__name__)
 
 
-@app.route("/")#, methods=["GET", "POST"])
+
+@app.route("/", methods=["GET", "POST"])
 def my_page():
+    if request.method == "POST": #This section takes data from HTML page
+        #get data from html page
+        #person = request.form.get("person", "")
+        #book = request.form.get("book", "")
+        htmlValue = request.form.get("html-value", "")
+        list.append(htmlValue)
+
+
+
+        #update psuedo backend
+        #book_log.check_out_book(Person(person, "none"), Book(1, book, "none"))
+
+        #redirect to the html page
+        return redirect(url_for("my_page"))
+    #pass data back to webpage
+    return render_template("index.html", value=list) #This sends data to HTML page
     """
     if request.method == "POST":
         new_person_name = request.form.get("person-name", "")
@@ -34,8 +61,7 @@ def my_page():
         return redirect(url_for("my_page"))
     return render_template("index.html", my_log=my_log)
     """
-    return render_template("index.html")
-
+    #return render_template("index.html")
 
 
 if __name__ == "__main__":
