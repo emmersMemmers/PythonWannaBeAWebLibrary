@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Wanna Be A Library</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/MyStyleSheet.css')}}" type="text/css">
+</head>
+<body>
+    <div class="banner">Test website driven by Python.  Links to go here.</div>
+    <div>
+        <h1>A Book Log</h1>
+        <br>
+        <p>Simple web page displaying a table</p>
+    </div>
+
+<div>
+    <p> Value = {{value}} </p>
+</div>
+
+    <div>
+        <table class = "table">
+             <thead>
+                 <tr>
+                    <th>Patron</th>
+                    <th>Book Title</th>
+                 </tr>
+            </thead>
+            <tbody>
+                {% for item in value %}
+                <tr>
+                    <td>{{ item }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+
+        <form method="POST">
+            <label for= "html-value"> HTML Label</label>
+            <input type="text" id="html-value" placeholder="HTML value HERE" name="html-value">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+
+    </div>
+<footer>
+    <h2 class="theFooter">A simple footer test.</h2>
+</footer>
+</body>
+</html>
