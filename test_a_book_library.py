@@ -19,5 +19,11 @@ class MyTestCase(unittest.TestCase):
         book_log = Book_log(Person("Bob", "Wallabe Way"), Book(1, "title", "author"))
         self.assertIsNotNone(book_log)
 
+"""
+    def test_print_log(self):
+        book_log = Book_log(Person("Bob", "Wallabe Way"), Book(1, "title", "author"))
+        book_log.print_log()
+        self.assertequal(book_log.print_log(), "Patron Bob has book title")
+"""
 if __name__ == '__main__':
     unittest.main()
