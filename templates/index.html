@@ -5,16 +5,27 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/MyStyleSheet.css')}}" type="text/css">
 </head>
 <body>
-    <div class="banner">Test website driven by Python.  Links to go here.</div>
+    <div>
+
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+    </div>
     <div>
         <h1>A Book Log</h1>
+
         <br>
-        <p>Simple web page displaying a table</p>
+
     </div>
 
-<div>
-    <p> Value = {{value}} </p>
-</div>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+        <a href="{{  url_for('cat_page') }}">Cat Page</a>
+    </div>
+
+
 
     <div>
         <table class = "table">
@@ -27,8 +38,12 @@
             <tbody>
                 {% for item in value %}
                 <tr>
-                    <td>{{ item }}</td>
+                    <td>{{ item.name }}</td>
+                    {% for book in item.books_person_has %}
+                    <td> {{book.title}}</td>
+
                 </tr>
+                    {% endfor %}
                 {% endfor %}
             </tbody>
         </table>
@@ -36,13 +51,25 @@
 
         <form method="POST">
             <label for= "html-value"> HTML Label</label>
-            <input type="text" id="html-value" placeholder="HTML value HERE" name="html-value">
+            <input type="text" id="patron-value" placeholder="Patron Name Here" name="patron-value">
+            <input type="text" id="book-value" placeholder="Book Title Here" name = "book-value">
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
 
     </div>
 <footer>
-    <h2 class="theFooter">A simple footer test.</h2>
+    <h2 class="theFooter">Emmers Memmers frolicking away</h2>
 </footer>
+
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+
 </body>
 </html>

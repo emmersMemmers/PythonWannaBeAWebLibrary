@@ -23,46 +23,30 @@ book_log.print_log()
 """
 
 a_value = "Nothing"
-list = ["Joe", "Bob"]
+list = []
 app = Flask(__name__)
 
 
 
 @app.route("/", methods=["GET", "POST"])
 def my_page():
-    if request.method == "POST": #This section takes data from HTML page
-        #get data from html page
-        #person = request.form.get("person", "")
-        #book = request.form.get("book", "")
-        htmlValue = request.form.get("html-value", "")
-        list.append(htmlValue)
-
-
-
-        #update psuedo backend
-        #book_log.check_out_book(Person(person, "none"), Book(1, book, "none"))
-
-        #redirect to the html page
+    if request.method == "POST":
+        #This section takes data from HTML page
+        patron_value = request.form.get("patron-value", "")
+        book_value = request.form.get("book-value", "")
+        a_person = Person(patron_value, "none")
+        a_person.add_book_to_person(Book(1, book_value, "none"))
+        list.append(a_person)
         return redirect(url_for("my_page"))
     #pass data back to webpage
-    return render_template("index.html", value=list) #This sends data to HTML page
-    """
-    if request.method == "POST":
-        new_person_name = request.form.get("person-name", "")
-        new_person_address = ""
-        new_book_title = request.form.get("book-title", "")
-        new_book_id = 1
-        new_book_author = ""
+    return render_template("index.html", value=list)
 
-        new_person = Person(new_person_name, new_person_address)
-        new_book = Book(new_book_id, new_book_title, new_book_author)
-        new_book_log = BookLog(new_person, new_book)
-        my_log.append(new_book_log)
+
+@app.route("/another_page", methods=["GET", "POST"])
+def cat_page():
+    if request.method == "POST": #This section takes data from HTML page
         return redirect(url_for("my_page"))
-    return render_template("index.html", my_log=my_log)
-    """
-    #return render_template("index.html")
-
+    return render_template("cat_page.html") #This sends data to HTML page
 
 if __name__ == "__main__":
     app.run(debug=True)
