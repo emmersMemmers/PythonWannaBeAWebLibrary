@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/MyStyleSheet.css')}}" type="text/css">
+    <script src="{{url_for('static', filename='JavaScript/SlideShow.js')}}" type="text/javascript"></script>
+</head>
+<body>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+    <h1>Cat Page</h1>
+
+    <div class="slideshow-container">
+        <div class = "mySlides fade" style="display: block;">
+            <div class="numbertext">1 / 3</div>
+            <img class = "cats" src="{{url_for('static',filename='Images/cats.jpg')}}" alt="Cat" style="width:100%;height:500px;">
+            <div class="text">Caption One</div>
+        </div>
+
+        <div class = "mySlides fade">
+            <div class="numbertext">2 / 3</div>
+            <img class = "cats" src="{{url_for('static',filename='Images/cats2.jpg')}}" alt="Cat" style="width:100%;height:500px;">
+            <div class="text">Caption Two</div>
+        </div>
+
+        <div class = "mySlides fade">
+            <div class="numbertext">3 / 3</div>
+            <img class = "cats" src="{{url_for('static',filename='Images/cats3.jpg')}}" alt="Cat" style="width:100%;height:500px;">
+            <div class="text">Caption Three</div>
+        </div>
+
+          <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+        <a href="{{  url_for('my_page') }}">Main Page</a>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+</body>
+</html>
